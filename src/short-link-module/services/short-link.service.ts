@@ -59,7 +59,7 @@ export class ShortLinkService {
       skip,
       limit,
     );
-    const nextPage = data.length < limit + 1 ? null : Number(page) + 1;
+    const nextPage = data.length < limit ? null : Number(page) + 1;
     const docs = data.length < limit + 1 ? data : data.slice(0, limit + 1);
     return {
       docs: docs,
