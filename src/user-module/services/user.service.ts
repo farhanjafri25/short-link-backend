@@ -12,6 +12,7 @@ export class UserService {
 
   public async saveUser(body: any): Promise<any> {
     try {
+      //save a new User to database and return an accesstoken
       body['userId'] = uuidv4();
       const res = await this.userRepository.saveNewUser(body);
       if (res) {

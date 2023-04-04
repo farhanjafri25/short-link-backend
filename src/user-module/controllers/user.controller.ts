@@ -16,11 +16,13 @@ import { UserService } from '../services/user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  //Signup a new User
   @Public()
   @Post('/signup')
   @HttpCode(201)
   public signUpUser(@Body() body: UserDto): Promise<any> {
     try {
+      //Validation check to pass only required keys with others validations on input
       const validUserKeys = ['name', 'email'];
       const isValidUserObj = Object.keys(body).every((key) =>
         validUserKeys.includes(key),
@@ -48,11 +50,13 @@ export class UserController {
     }
   }
 
+  //Logs in an old user
   @Public()
   @Post('/login')
   @HttpCode(200)
   public async loginUser(@Body() body: UserDto): Promise<any> {
     try {
+      //checks if a user with emal passed is present in DB then return a new AccessToken else throws an error
       const { email } = body;
       const data = await this.userService.loginUser(email);
       if (data) {
