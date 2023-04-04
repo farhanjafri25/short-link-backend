@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Get,
@@ -27,7 +28,11 @@ export class ShortLinkController {
     @Body() body: ShortLinkDto,
     @GetCurrentUser('id') userId: string,
   ): Promise<any> {
-    return this.shortLinkService.saveNewLink(body, userId);
+    if (body.url.length > 5) {
+      return this.shortLinkService.saveNewLink(body, userId);
+    } else {
+      throw new BadRequestException('Enter a valid Link');
+    }
   }
 
   @Get('/user/link')
