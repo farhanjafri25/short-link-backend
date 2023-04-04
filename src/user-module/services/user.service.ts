@@ -35,9 +35,9 @@ export class UserService {
       return;
     }
   }
-  public async loginUser(email: string): Promise<any> {
+  public async loginUser(email: string, name: string): Promise<any> {
     try {
-      const res = await this.userRepository.getUser(email);
+      const res = await this.userRepository.getUser(email, name);
       console.log(`existing user`, res);
       const accessToken = this.jwtService.sign(
         {

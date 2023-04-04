@@ -21,11 +21,12 @@ export class UserRepository {
       return;
     }
   }
-  public async getUser(email: string): Promise<UserEntity> {
+  public async getUser(email: string, name: string): Promise<UserEntity> {
     try {
       const res = await this.userRepository.findOne({
         where: {
           email: email,
+          name: name,
         },
       });
       return res;

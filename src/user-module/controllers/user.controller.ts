@@ -62,8 +62,8 @@ export class UserController {
   public async loginUser(@Body() body: UserDto): Promise<any> {
     try {
       //checks if a user with emal passed is present in DB then return a new AccessToken else throws an error
-      const { email } = body;
-      const data = await this.userService.loginUser(email);
+      const { email, name } = body;
+      const data = await this.userService.loginUser(email, name);
       if (data) {
         return data;
       }
