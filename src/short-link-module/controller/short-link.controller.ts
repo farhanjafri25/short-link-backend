@@ -32,7 +32,10 @@ export class ShortLinkController {
     if (body.url.length > 5) {
       return this.shortLinkService.saveNewLink(body, userId);
     } else {
-      throw new BadRequestException('Enter a valid Link');
+      return Promise.resolve({
+        code: 400,
+        message: 'Link Should be minimum 5 characters',
+      });
     }
   }
 

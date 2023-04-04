@@ -32,17 +32,22 @@ export class UserController {
       }
       if (body['name']) {
         if (!body['name'].match(/^[0-9a-zA-Z]+$/)) {
-          throw new BadRequestException(
-            'Username must not contain special characters',
-          );
+          return Promise.resolve({
+            code: 400,
+            message: 'Username must not contain special characters',
+          });
         }
         if (body?.name && body?.name.length < 5)
-          throw new BadRequestException(
-            'Please enter username greater than 5 characters',
-          );
+          return Promise.resolve({
+            code: 400,
+            message: 'Please enter username greater than 5 characters',
+          });
         return this.userService.saveUser(body);
       } else {
-        throw new BadRequestException('Username Cannot be Empty');
+        return Promise.resolve({
+          code: 400,
+          message: 'Username should be present',
+        });
       }
     } catch (error) {
       console.log(error);

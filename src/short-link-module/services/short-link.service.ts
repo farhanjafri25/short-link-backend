@@ -33,7 +33,10 @@ export class ShortLinkService {
       console.log(`diffInHours`, diffInHours);
       if (diffInHours > 48) {
         await this.shortLinkRepository.setActiveLink(res.short_code);
-        throw new BadRequestException('Link expired, Generate a new link');
+        return {
+          code: 400,
+          message: 'Link Expired Generate a new Link',
+        };
       }
       return res;
     } catch (error) {
