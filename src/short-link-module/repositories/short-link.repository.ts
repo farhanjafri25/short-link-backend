@@ -30,7 +30,7 @@ export class ShortLinkRepository {
       {
         expirationDate: LessThanOrEqual(new Date().getTime()),
       },
-      { isDeleted: true },
+      { isActive: false },
     );
   }
 
