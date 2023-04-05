@@ -19,7 +19,6 @@ export class UserController {
   //Signup a new User
   @Public()
   @Post('/signup')
-  @HttpCode(201)
   public signUpUser(@Body() body: UserDto): Promise<any> {
     try {
       //Validation check to pass only required keys with others validations on input

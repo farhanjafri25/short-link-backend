@@ -28,7 +28,7 @@ export class UserService {
       }
       return {
         code: 400,
-        message: 'Error creating User',
+        message: 'Already a User, Login!',
       };
     } catch (error) {
       console.log(error);
